@@ -1,19 +1,44 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
     id 'java'
 }
 
 group 'net.aariy'
-version '1.0.0'
 
 repositories {
     mavenCentral()
+    maven {
+        name 'm2-dv8tion'
+        url 'https://m2.dv8tion.net/releases'
+    }
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+    implementation 'club.minnced:discord-webhooks:0.8.2'
+    implementation 'net.dv8tion:JDA:5.0.0-beta.1'
+    //noinspection GradlePackageUpdate
+    implementation 'org.twitter4j:twitter4j-core:4.0.7'
+    implementation 'net.logicsquad:nanocaptcha:1.3'
+    implementation 'com.github.instagram4j:instagram4j:2.0.7'
 }
 
-test {
-    useJUnitPlatform()
+jar {
+    //noinspection GroovyAssignabilityCheck
+    manifest {
+        attributes "Main-Class": "net.aariy.Main"
+    }
 }
+
+shadowJar {
+    archiveFileName = "UserManagerBot1.jar"
+}
+
+classes {
+    finalizedBy "shadowJar"
+}
+
+
+task stage(dependsOn: 'shadowJar') {}
+//noinspection GroovyAssignabilityCheck
+tasks.withType(AbstractCompile)*.options*.encoding = tasks.withType(GroovyCompile)*.groovyOptions*.encoding = 'UTF-8'
