@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class Main extends ListenerAdapter
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
         JDA jda = JDABuilder.createDefault(args[0]).enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_PRESENCES).setMemberCachePolicy(MemberCachePolicy.ALL).build();
         jda.updateCommands().addCommands(
@@ -56,7 +56,7 @@ public class Main extends ListenerAdapter
     {
         if(e.getModalId().equals("keyword_modal"))
         {
-            if(e.getValue("keyword_input").equals("応援"))
+            if(e.getValue("keyword_input").getAsString().equals("応援"))
             {
                 e.getGuild().addRoleToMember(e.getUser(), e.getGuild().getRoleById("1055130068587925505")).queue();
                 e.reply("> :white_check_mark: 認証に成功しました。").setEphemeral(true).queue();
