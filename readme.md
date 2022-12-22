@@ -8,7 +8,7 @@
 
 **https://www.oracle.com/jp/java/technologies/downloads/#java17**
 
-**https://discord.com/developers のボットページで特権インテント（Privileged Gateway Intent）の3つのスイッチをONにしてください。**
+**https://discord.com/developers から作成したアプリをクリック後、「ボット」ページの項目「特権インテント（Privileged Gateway Intent）」の3つのスイッチをONにしてください。**
 
 Windowsの方はrun.bat、Linuxの方はrun.sh（要実行権限）を以下の通り編集してから実行してください。
 
