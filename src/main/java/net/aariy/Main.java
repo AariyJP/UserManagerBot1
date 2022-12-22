@@ -17,9 +17,8 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 
-
+@SuppressWarnings("DataFlowIssue")
 public class Main extends ListenerAdapter
 {
     public static void main(String[] args)
@@ -56,7 +55,7 @@ public class Main extends ListenerAdapter
     {
         if(e.getModalId().equals("keyword_modal"))
         {
-            if(e.getValue("keyword_input").getAsString().equals("応援"))
+            if(e.getValue("keyword_input").getAsString().equals("キーワード"))
             {
                 e.getGuild().addRoleToMember(e.getUser(), e.getGuild().getRoleById("1055130068587925505")).queue();
                 e.reply("> :white_check_mark: 認証に成功しました。").setEphemeral(true).queue();
